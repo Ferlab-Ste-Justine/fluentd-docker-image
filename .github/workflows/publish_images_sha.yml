@@ -1,0 +1,20 @@
+name: Publish Image Using Commit Hash
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Publish Image
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Push the fluentd image on the docker registry
+      uses: Ferlab-Ste-Justine/action-push-image@v2
+      with:
+        username: ${{ secrets.FERLAB_DOCKER_HUB_USER }}
+        password: ${{ secrets.FERLAB_DOCKER_HUB_TOKEN }}
+        image: ferlabcrsj/fluentd
+        tag_format: "{sha}-{timestamp}"
