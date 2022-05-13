@@ -1,4 +1,4 @@
-FROM fluentd:v1.14-1
+FROM fluentd:v1.14-debian-1
 
 USER 0
 
